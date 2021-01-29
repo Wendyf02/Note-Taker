@@ -4,7 +4,7 @@ const path = require("path");
 
 //set up express App & set up initial port
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3000;
 
 //read URL or JSON
 app.use(express.urlcoded({extended: true}));
