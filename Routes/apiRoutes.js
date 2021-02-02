@@ -1,5 +1,13 @@
 const fs = require('fs');
 const noteData = require("../db/db.json");
+const uniqid = require('uniqid');
+
+
+ 
+console.log(uniqid()); // -> 4n5pxq24kpiob12og9
+console.log(uniqid(), uniqid()); // -> 4n5pxq24kriob12ogd, 4n5pxq24ksiob12ogl
+
+
 
 
 module.exports = function(app) {
@@ -13,20 +21,46 @@ module.exports = function(app) {
 
  // Method Post
  app.post("/api/notes", function(req, res) {
-    noteData.push(req.body);
+    
+    let newNote = { 
+      id:uniqid(), 
+      text:req.body.text,
+      title:req.body.title,
+    }
+    noteData.push(newNote);
     
     fs.writeFile('./db/db.json',JSON.stringify(noteData), (err) =>
-    err ? console.error(err) :  res.json(req.body)
-  );
+    err ? console.error(err) :  res.json(newNote)
+  ); 
+
+});
+
+// Method Delete
+
+app.delete("/api/notes/:id", function(req, res) {
+ 
+
+for (let index = 0; index < noteData.length; index++) {
+  if (req.params.id == noteData[index].id) {
+    console.log(noteData[index])
+
+    noteData.splice(index,1)
+      console.log(noteData)
+    
+      fs.writeFile('./db/db.json',JSON.stringify(noteData), (err) =>
+      err ? console.error(err) :  res.json(noteData)
+    ); 
 
 
 
-   
-
+  }
+  
+}
 
 
 
 });
+
 
 
 
