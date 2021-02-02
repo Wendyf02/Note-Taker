@@ -17,8 +17,8 @@
 
   ## Usage
   1-run node server.js   
-  2-open in your preferred browser http://localhost:8002   
-  3-The note-Taker app is deploy in heroku -see below for link   
+  2-Open in your preferred browser http://localhost:8002   
+  3-The Note-Taker app is deploy in heroku -see below for link   
 
   ## Lincense
   ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
